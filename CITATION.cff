@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code in your research, please cite it as below."
+title: "Optimal Periodic Impulsive Insulin Delivery for Type 1 Diabetes"
+authors:
+  - family-names: "Essamy"
+    given-names: "Amina"
+  - family-names: "Salwahan"
+    given-names: "Shraddha"
+  - family-names: "Tridane"
+    given-names: "Abdessamad"
+  - family-names: "Ferjouchia"
+    given-names: "Hanane"
+version: "1.0.0"
+doi: "10.5281/zenodo.23289271"
+date-released: "2026-10-10"
+license: MIT
+repository-code: "https://github.com/amina-samy/insulin-impulsive-control"
