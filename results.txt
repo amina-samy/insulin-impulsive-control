@@ -1,0 +1,86 @@
+========================================================================================== 
+1. DOSES OPTIMALES (SLSQP + gradient exact ; contrôle : L-BFGS-B) 
+==========================================================================================
+kappa* = [ 7.1074 10.718   5.2903  0.    ]  somme = 23.116  (26 % de KTOT)
+J(kappa*) = 172.7874   J(0) = 4.6508e+05   plancher wI*Ib^2*T = 153.475
+gradient (sensibilités) [-2.000e-04  1.000e-04 -1.000e-04  5.549e-01] | gradient (adjoint) [-2.000e-04  1.000e-04 -1.000e-04  5.549e-01]
+résidu KKT (gradient projeté sur [0,30]) = 1.5e-04
+  FD pas 1e-03 : erreur relative (2-norme) = 5.6e-03
+  FD pas 1e-04 : erreur relative (2-norme) = 2.7e-03
+Multi-départ (6 points initiaux x 2 solveurs) :
+  départ [7.11, 10.72, 5.29, 0.05] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+  départ [0, 0, 0, 0] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+  départ [30, 30, 30, 0] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+  départ [20, 20, 20, 10] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+  départ [5, 5, 5, 5] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+  départ [1, 25, 1, 25] -> [ 7.107 10.718  5.29   0.   ] [ 7.107 10.718  5.29   0.   ]  J=172.7874
+temps : 85 s
+
+========================================================================================== 
+2. INDICES CLINIQUES SUR LE JOUR NOMINAL (grille de 0,1 min) 
+==========================================================================================
+sans bolus      {'TIR': 87.0, 'TAR': 13.0, 'TBR': 0.0, 'peak': 245.0, 'nadir': 92.0}
+règle glucides   {'TIR': 95.8, 'TAR': 4.2, 'TBR': 0.0, 'peak': 198.7, 'nadir': 88.0}
+kappa*           {'TIR': 99.6, 'TAR': 0.4, 'TBR': 0.0, 'peak': 180.1, 'nadir': 85.9}
+temps total G>180 sous kappa* : 5.6 min ; pic max 180.05 ; min 85.89
+pics de G sous kappa*: [np.float64(180.0), np.float64(180.1), np.float64(180.0)]  sans bolus: [np.float64(223.1), np.float64(245.0), np.float64(212.1)]
+pics de X : [np.float64(0.0121), np.float64(0.0183), np.float64(0.009)]  retard théorique ln(n/p2)/(n-p2) = 30.0 min
+pics de m : [np.float64(6.62), np.float64(7.73), np.float64(6.07)]
+doses par gramme : [np.float64(0.118), np.float64(0.153), np.float64(0.096)]
+doses en unités (D = 15 kappa V_I / 1000, V_I = 8,4 L) : [np.float64(0.9), np.float64(1.35), np.float64(0.67)]
+
+========================================================================================== 
+3. SENSIBILITÉ : erreurs de dose, repas sautés ou retardés, p3 multiplié 
+==========================================================================================
+facteur 1 {'TIR': 99.6, 'TAR': 0.4, 'TBR': 0.0, 'peak': 180.1, 'nadir': 85.9}
+facteur 2 {'TIR': 100.0, 'TAR': 0.0, 'TBR': 0.0, 'peak': 155.6, 'nadir': 79.4}
+facteur 3 {'TIR': 100.0, 'TAR': 0.0, 'TBR': 0.0, 'peak': 136.6, 'nadir': 72.9}
+facteur 4 {'TIR': 96.1, 'TAR': 0.0, 'TBR': 3.9, 'peak': 121.4, 'nadir': 66.6}
+facteur 5 {'TIR': 91.8, 'TAR': 0.0, 'TBR': 8.2, 'peak': 109.1, 'nadir': 60.7}
+facteur 6 {'TIR': 83.3, 'TAR': 0.0, 'TBR': 16.7, 'peak': 98.9, 'nadir': 54.8}
+facteur 8 {'TIR': 68.9, 'TAR': 0.0, 'TBR': 31.1, 'peak': 92.0, 'nadir': 45.5}
+Petit-déj. sauté   {'TIR': 99.8, 'TAR': 0.2, 'TBR': 0.0, 'peak': 180.0, 'nadir': 70.8}
+Déjeuner sauté     {'TIR': 94.7, 'TAR': 0.2, 'TBR': 5.1, 'peak': 180.0, 'nadir': 62.8}
+Dîner sauté        {'TIR': 99.7, 'TAR': 0.3, 'TBR': 0.0, 'peak': 180.1, 'nadir': 75.4}
+Tous sautés        {'TIR': 94.9, 'TAR': 0.0, 'TBR': 5.1, 'peak': 92.0, 'nadir': 62.8}
+Retard 90 min      {'TIR': 84.6, 'TAR': 10.6, 'TBR': 4.8, 'peak': 222.9, 'nadir': 63.1}
+p3 x 1 {'TIR': 99.6, 'TAR': 0.4, 'TBR': 0.0, 'peak': 180.1, 'nadir': 85.9}
+p3 x 2 {'TIR': 100.0, 'TAR': 0.0, 'TBR': 0.0, 'peak': 155.6, 'nadir': 79.4}
+p3 x 3 {'TIR': 100.0, 'TAR': 0.0, 'TBR': 0.0, 'peak': 136.6, 'nadir': 72.9}
+p3 x 4 {'TIR': 96.1, 'TAR': 0.0, 'TBR': 3.9, 'peak': 121.4, 'nadir': 66.6}
+optimum avec w_hypo = 0 : [ 7.107 10.718  5.29   0.   ] (identique : le terme hypo est inactif)
+
+========================================================================================== 
+4. RÉGIME PÉRIODIQUE : orbite, coût périodique, gradient périodique 
+==========================================================================================
+Y0 sur l'orbite : [91.7977  0.      7.3     0.    ] | distance l1 à l'état basal : 0.202 | G0-Gb = -0.202
+J un jour = 172.787411 ; J périodique = 172.787407 ; écart relatif = 2.1e-08
+gradient un jour   : [-2.000e-04  1.000e-04 -1.000e-04  5.549e-01]
+gradient périodique: [ 6.000e-04  1.000e-04 -1.000e-04  5.838e-01]
+gradient périodique par différences finies : [ 0.0023 -0.002   0.0006  0.584 ]
+écart relatif du composant 4 (coucher) un-jour vs périodique : 5.0 %
+Floquet (T=1440) : mu_X=8.14e-14 mu_I=5.38e-32 mu_m=5.38e-32 mu_G=1.58e-21 (int X = 3.519) ; nu = 0.02093
+Floquet, période courte Tp = 240, kappa = 12 :
+  mu_G  forme close 9.869658e-05  numérique 9.869658e-05  erreur relative 1.8e-11
+  mu_X  forme close 6.583426e-03  numérique 6.583426e-03  erreur relative 8.0e-14
+  mu_I  forme close 6.144212e-06  numérique 6.144212e-06  erreur relative 2.2e-10
+  mu_m  forme close 6.144212e-06  numérique 6.144212e-06  erreur relative 2.2e-10
+  écart max |G(t)-G(t-Tp)| entre les deux dernières périodes : 2.52e-07 mg/dL
+
+========================================================================================== 
+5. POPULATION VIRTUELLE (N = 300, jour 3, doses fixes) 
+==========================================================================================
+graine 0 TIR [ 92.8  95.3  97.   98.3 100. ] | TAR [0.  1.7 3.  4.7 7.2] | TBR [0. 0. 0. 0. 0.] | min TIR 90.5 | max TBR 0.38 | patients TBR>0 : 8
+graine 1 TIR [ 91.8  94.8  96.8  98.2 100. ] | TAR [0.  1.8 3.2 5.2 8.2] | TBR [0. 0. 0. 0. 0.] | min TIR 89.9 | max TBR 0.64 | patients TBR>0 : 11
+graine 2 TIR [ 92.3  94.8  96.7  98.1 100. ] | TAR [0.  1.9 3.3 5.2 7.7] | TBR [0. 0. 0. 0. 0.] | min TIR 90.1 | max TBR 0.43 | patients TBR>0 : 8
+graine 3 TIR [ 92.4  94.7  96.8  98.1 100. ] | TAR [0.  1.9 3.2 5.3 7.6] | TBR [0. 0. 0. 0. 0.] | min TIR 90.2 | max TBR 0.56 | patients TBR>0 : 9
+graine 4 TIR [ 92.4  95.   96.9  98.1 100. ] | TAR [0.  1.9 3.1 5.  7.6] | TBR [0. 0. 0. 0. 0.] | min TIR 90.4 | max TBR 0.54 | patients TBR>0 : 10
+graine 5 TIR [ 92.3  95.   96.6  98.  100. ] | TAR [0.  2.  3.4 5.  7.7] | TBR [0. 0. 0. 0. 0.] | min TIR 88.5 | max TBR 0.42 | patients TBR>0 : 8
+bande 5-95 : max 206.2 ; min 71.3 mg/dL
+
+========================================================================================== 
+6. FIGURES (EPS + PDF) 
+==========================================================================================
+convergence : constante empirique C = 22.0 (avant le plancher numérique 1e-9)
+minima par scénario (Fig. 4d) : [np.float64(85.9), np.float64(70.8), np.float64(62.8), np.float64(75.4), np.float64(62.8), np.float64(63.1)]
+figures écrites dans /mnt/attach/outputs/these_corrigee/article_impulsif/figures
